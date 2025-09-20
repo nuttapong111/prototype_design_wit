@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Sukhumvit+Set:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #3b82f6;
+  --secondary: #8b5cf6;
+  --accent: #06b6d4;
+  --muted: #f8fafc;
+  --border: #e2e8f0;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --font-sukhumvit: 'Sukhumvit Set', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 @theme inline {
@@ -14,13 +23,66 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sukhumvit);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+    font-family: var(--font-sukhumvit);
+  }
+  
+  body {
+    @apply bg-white text-gray-900 antialiased;
+    font-family: var(--font-sukhumvit);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sukhumvit);
+    font-weight: 600;
+  }
+  
+  button, input, textarea, select {
+    font-family: var(--font-sukhumvit);
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  .button-primary {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+  
+  .button-secondary {
+    @apply bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+  
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
 }
