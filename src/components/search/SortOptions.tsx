@@ -4,11 +4,12 @@ import { Select, SelectItem } from '@heroui/react';
 import { ArrowUpDown } from 'lucide-react';
 
 interface SortOptionsProps {
+  sortBy: string;
   onSortChange: (sortBy: string) => void;
-  currentSort: string;
+  totalResults: number;
 }
 
-export default function SortOptions({ onSortChange, currentSort }: SortOptionsProps) {
+export default function SortOptions({ sortBy, onSortChange, totalResults }: SortOptionsProps) {
   const sortOptions = [
     { value: 'relevance', label: 'ความเกี่ยวข้อง' },
     { value: 'price-low', label: 'ราคา: น้อยไปมาก' },
@@ -22,10 +23,14 @@ export default function SortOptions({ onSortChange, currentSort }: SortOptionsPr
   ];
 
   return (
-    <div className="flex items-center gap-2">
-      <ArrowUpDown className="w-4 h-4 text-gray-500" />
-      <Select
-        selectedKeys={[currentSort]}
+    <div className="flex items-center gap-4">
+      <div className="text-sm text-gray-600" style={{ fontFamily: 'var(--font-sukhumvit)' }}>
+        พบ {totalResults.toLocaleString()} รายการ
+      </div>
+      <div className="flex items-center gap-2">
+        <ArrowUpDown className="w-4 h-4 text-gray-500" />
+        <Select
+        selectedKeys={[sortBy]}
         onSelectionChange={(keys) => {
           const selectedKey = Array.from(keys)[0] as string;
           onSortChange(selectedKey);
@@ -38,13 +43,14 @@ export default function SortOptions({ onSortChange, currentSort }: SortOptionsPr
         }}
       >
         {sortOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={option.value}>
             <span style={{ fontFamily: 'var(--font-sukhumvit)' }}>
               {option.label}
             </span>
           </SelectItem>
         ))}
-      </Select>
+        </Select>
+      </div>
     </div>
   );
 }

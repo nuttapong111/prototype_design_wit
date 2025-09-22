@@ -1,22 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import { Card, CardBody, CardHeader, Checkbox, Slider, Button } from '@heroui/react';
 import { Filter, X } from 'lucide-react';
 
+import { SearchFilters as SearchFiltersType } from '@/types';
+
 interface SearchFiltersProps {
-  onFiltersChange: (filters: any) => void;
+  filters: SearchFiltersType;
+  onFiltersChange: (filters: SearchFiltersType) => void;
+  onClearFilters: () => void;
 }
 
-export default function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
-  const [filters, setFilters] = useState({
-    platforms: [] as string[],
-    categories: [] as string[],
-    priceRange: [0, 100000],
-    minRating: 0,
-    hasPhysicalStore: false,
-    inStock: false
-  });
+export default function SearchFilters({ filters, onFiltersChange, onClearFilters }: SearchFiltersProps) {
 
   const platforms = [
     { id: 'shopee', name: 'Shopee' },
@@ -38,7 +33,6 @@ export default function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
       : filters.platforms.filter(id => id !== platformId);
     
     const newFilters = { ...filters, platforms: newPlatforms };
-    setFilters(newFilters);
     onFiltersChange(newFilters);
   };
 
@@ -48,45 +42,33 @@ export default function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
       : filters.categories.filter(id => id !== categoryId);
     
     const newFilters = { ...filters, categories: newCategories };
-    setFilters(newFilters);
     onFiltersChange(newFilters);
   };
 
-  const handlePriceRangeChange = (value: number[]) => {
-    const newFilters = { ...filters, priceRange: value };
-    setFilters(newFilters);
+  const handlePriceRangeChange = (value: number | number[]) => {
+    const range = Array.isArray(value) ? value : [value, value];
+    const newFilters = { ...filters, priceRange: { min: range[0], max: range[1] } };
     onFiltersChange(newFilters);
   };
 
-  const handleRatingChange = (rating: number) => {
-    const newFilters = { ...filters, minRating: rating };
-    setFilters(newFilters);
+  const handleRatingChange = (rating: number | number[]) => {
+    const value = Array.isArray(rating) ? rating[0] : rating;
+    const newFilters = { ...filters, rating: value };
     onFiltersChange(newFilters);
   };
 
   const handlePhysicalStoreChange = (checked: boolean) => {
     const newFilters = { ...filters, hasPhysicalStore: checked };
-    setFilters(newFilters);
     onFiltersChange(newFilters);
   };
 
   const handleInStockChange = (checked: boolean) => {
     const newFilters = { ...filters, inStock: checked };
-    setFilters(newFilters);
     onFiltersChange(newFilters);
   };
 
   const clearFilters = () => {
-    const clearedFilters = {
-      platforms: [],
-      categories: [],
-      priceRange: [0, 100000],
-      minRating: 0,
-      hasPhysicalStore: false,
-      inStock: false
-    };
-    setFilters(clearedFilters);
-    onFiltersChange(clearedFilters);
+    onClearFilters();
   };
 
   return (
@@ -155,10 +137,10 @@ export default function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
         {/* ช่วงราคา */}
         <div>
           <h4 className="text-sm font-medium text-gray-700 mb-3" style={{ fontFamily: 'var(--font-sukhumvit)' }}>
-            ช่วงราคา: ฿{filters.priceRange[0].toLocaleString()} - ฿{filters.priceRange[1].toLocaleString()}
+            ช่วงราคา: ฿{filters.priceRange.min.toLocaleString()} - ฿{filters.priceRange.max.toLocaleString()}
           </h4>
           <Slider
-            value={filters.priceRange}
+            value={[filters.priceRange.min, filters.priceRange.max]}
             onChange={handlePriceRangeChange}
             minValue={0}
             maxValue={100000}
@@ -171,10 +153,10 @@ export default function SearchFilters({ onFiltersChange }: SearchFiltersProps) {
         {/* คะแนนรีวิว */}
         <div>
           <h4 className="text-sm font-medium text-gray-700 mb-3" style={{ fontFamily: 'var(--font-sukhumvit)' }}>
-            คะแนนรีวิวขั้นต่ำ: {filters.minRating} ดาว
+            คะแนนรีวิวขั้นต่ำ: {filters.rating} ดาว
           </h4>
           <Slider
-            value={filters.minRating}
+            value={filters.rating}
             onChange={handleRatingChange}
             minValue={0}
             maxValue={5}

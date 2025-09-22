@@ -5,8 +5,8 @@ export const mockStores: Store[] = [
     id: 'store-1',
     name: 'TechHub Thailand',
     description: 'ผู้เชี่ยวชาญด้านอิเล็กทรอนิกส์และเทคโนโลยี มากกว่า 10 ปี',
-    logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop&crop=center',
-    banner: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=300&fit=crop&crop=center',
+    logo: '/images/iphone.webp',
+    banner: '/images/iphone.webp',
     rating: 4.8,
     totalReviews: 15420,
     hasPhysicalStore: true,
@@ -29,8 +29,8 @@ export const mockStores: Store[] = [
     id: 'store-2',
     name: 'Fashion Forward',
     description: 'แฟชั่นทันสมัยสำหรับทุกวัย ราคาเป็นมิตร',
-    logo: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=100&h=100&fit=crop&crop=center',
-    banner: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=300&fit=crop&crop=center',
+    logo: '/images/fashion.webp',
+    banner: '/images/fashion.webp',
     rating: 4.6,
     totalReviews: 8930,
     hasPhysicalStore: true,
@@ -52,8 +52,8 @@ export const mockStores: Store[] = [
     id: 'store-3',
     name: 'Home & Living Store',
     description: 'ของใช้ในบ้านคุณภาพดี ราคาไม่แพง',
-    logo: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=100&h=100&fit=crop&crop=center',
-    banner: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=300&fit=crop&crop=center',
+    logo: '/images/home.webp',
+    banner: '/images/home.webp',
     rating: 4.7,
     totalReviews: 12350,
     hasPhysicalStore: false,
@@ -79,7 +79,7 @@ export const mockCategories: Category[] = [
     slug: 'electronics',
     description: 'อุปกรณ์อิเล็กทรอนิกส์และเทคโนโลยี',
     icon: '📱',
-    image: 'https://images.unsplash.com/photo-1498049794561-7780c723c765?w=400&h=300&fit=crop&crop=center',
+    image: '/images/electronics.webp',
     subcategories: [
       { id: 'mobile', name: 'โทรศัพท์มือถือ', slug: 'mobile', productCount: 1250 },
       { id: 'laptop', name: 'แล็ปท็อป', slug: 'laptop', productCount: 890 },
@@ -95,7 +95,7 @@ export const mockCategories: Category[] = [
     slug: 'fashion',
     description: 'เสื้อผ้า รองเท้า และเครื่องประดับ',
     icon: '👗',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=center',
+    image: '/images/fashion.webp',
     subcategories: [
       { id: 'men-clothing', name: 'เสื้อผ้าชาย', slug: 'men-clothing', productCount: 2100 },
       { id: 'women-clothing', name: 'เสื้อผ้าหญิง', slug: 'women-clothing', productCount: 3500 },
@@ -111,7 +111,7 @@ export const mockCategories: Category[] = [
     slug: 'home',
     description: 'เฟอร์นิเจอร์และของใช้ในบ้าน',
     icon: '🏠',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop&crop=center',
+    image: '/images/home.webp',
     subcategories: [
       { id: 'furniture', name: 'เฟอร์นิเจอร์', slug: 'furniture', productCount: 1500 },
       { id: 'kitchen', name: 'ของใช้ในครัว', slug: 'kitchen', productCount: 2200 },
@@ -129,9 +129,9 @@ export const mockProducts: Product[] = [
     name: 'iPhone 15 Pro Max 256GB',
     description: 'สมาร์ทโฟน iPhone รุ่นล่าสุด พร้อมชิป A17 Pro และกล้อง 48MP',
     images: [
-      'https://images.unsplash.com/photo-1592899677977-9c10b588e3e5?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1510557880182-3ee4f8559622?w=500&h=500&fit=crop&crop=center'
+      '/images/iphone.webp',
+      '/images/iphone.webp',
+      '/images/iphone.webp'
     ],
     videos: ['https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'],
     category: 'electronics',
@@ -190,8 +190,8 @@ export const mockProducts: Product[] = [
     name: 'MacBook Pro 14" M3 Pro',
     description: 'แล็ปท็อป MacBook Pro รุ่นล่าสุด พร้อมชิป M3 Pro และหน้าจอ Liquid Retina XDR',
     images: [
-      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop&crop=center'
+      '/images/mac.png',
+      '/images/mac.png'
     ],
     category: 'electronics',
     subcategory: 'laptop',
@@ -233,9 +233,9 @@ export const mockProducts: Product[] = [
     name: 'เสื้อเชิ้ตผ้าฝ้าย 100%',
     description: 'เสื้อเชิ้ตผ้าฝ้ายคุณภาพดี ใส่สบาย เหมาะสำหรับทุกโอกาส',
     images: [
-      'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&crop=center'
+      '/images/shirt.jpg',
+      '/images/shirt.jpg',
+      '/images/shirt.jpg'
     ],
     category: 'fashion',
     subcategory: 'men-clothing',
@@ -290,9 +290,9 @@ export const mockProducts: Product[] = [
     name: 'Samsung Galaxy S24 Ultra',
     description: 'สมาร์ทโฟน Android รุ่นล่าสุด พร้อมกล้อง 200MP และ S Pen',
     images: [
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1510557880182-3ee4f8559622?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1592899677977-9c10b588e3e5?w=500&h=500&fit=crop&crop=center'
+      '/images/samsung.webp',
+      '/images/samsung.webp',
+      '/images/samsung.webp'
     ],
     category: 'electronics',
     subcategory: 'mobile',
@@ -332,8 +332,8 @@ export const mockProducts: Product[] = [
     name: 'AirPods Pro 2nd Gen',
     description: 'หูฟังไร้สาย Apple พร้อม Active Noise Cancellation',
     images: [
-      'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&h=500&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=500&h=500&fit=crop&crop=center'
+      '/images/airpods.webp',
+      '/images/airpods.webp'
     ],
     category: 'electronics',
     subcategory: 'audio',
@@ -376,7 +376,7 @@ export const mockBanners: Banner[] = [
     title: 'ลองสินค้าในห้องด้วย AR',
     subtitle: 'เทคโนโลยีใหม่ล่าสุด',
     description: 'ใช้เทคโนโลยี AR เพื่อดูสินค้าในห้องของคุณก่อนตัดสินใจซื้อ',
-    image: 'https://images.unsplash.com/photo-1592478411213-6153e4c4c8f4?w=1200&h=400&fit=crop&crop=center',
+    image: '/images/banner1.webp',
     buttonText: 'ลองใช้ AR',
     buttonLink: '/ar-demo',
     isActive: true,
@@ -387,7 +387,7 @@ export const mockBanners: Banner[] = [
     title: 'เปรียบเทียบราคาจากทุกแพลตฟอร์ม',
     subtitle: 'หาซื้อได้ในราคาที่ดีที่สุด',
     description: 'เปรียบเทียบราคาสินค้าจาก Shopee, Lazada, และ JD Central ในที่เดียว',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=400&fit=crop&crop=center',
+    image: '/images/banner2.webp',
     buttonText: 'เริ่มค้นหา',
     buttonLink: '/search',
     isActive: true,
@@ -402,11 +402,11 @@ export const mockReviews: Review[] = [
     storeId: 'store-1',
     userId: 'user-1',
     userName: 'สมชาย ใจดี',
-    userAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=center',
+    userAvatar: '/images/user.webp',
     rating: 5,
     title: 'คุ้มค่ามาก!',
     content: 'iPhone 15 Pro Max ใช้ได้ดีมาก กล้องถ่ายรูปสวยมาก แบตเตอรี่ทนได้ทั้งวัน',
-    images: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop&crop=center'],
+    images: ['/images/review.webp'],
     verifiedPurchase: true,
     helpfulCount: 25,
     createdAt: '2024-01-20T10:30:00Z'

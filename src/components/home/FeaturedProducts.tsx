@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardBody, Button, Chip } from '@heroui/react';
+import { Button, Chip } from '@heroui/react';
 import { Star, TrendingUp, ArrowRight } from 'lucide-react';
 import ProductCard from '@/components/product/ProductCard';
 import { Product } from '@/types';
@@ -71,7 +71,7 @@ export default function FeaturedProducts({
                   size="sm"
                   color={sortBy === option.value ? 'primary' : 'default'}
                   className="cursor-pointer"
-                  onClick={() => setSortBy(option.value as any)}
+                  onClick={() => setSortBy(option.value as 'rating' | 'price' | 'reviews')}
                   startContent={<option.icon size={14} />}
                 >
                   {option.label}

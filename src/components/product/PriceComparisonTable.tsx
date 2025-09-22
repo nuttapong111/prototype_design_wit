@@ -1,18 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardBody, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Chip, Avatar, Tooltip } from '@heroui/react';
+import { Card, CardBody, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Chip } from '@heroui/react';
 import { ExternalLink, Star, MapPin, Truck, Clock, Shield, Users } from 'lucide-react';
-import { Product, StorePrice } from '@/types';
+import { StorePrice } from '@/types';
 
 interface PriceComparisonTableProps {
-  product: Product;
+  stores: StorePrice[];
 }
 
-export default function PriceComparisonTable({ product }: PriceComparisonTableProps) {
+export default function PriceComparisonTable({ stores }: PriceComparisonTableProps) {
   const [sortBy, setSortBy] = useState<'price' | 'rating' | 'reviews'>('price');
 
-  const sortedStores = [...product.stores].sort((a, b) => {
+  const sortedStores = [...stores].sort((a, b) => {
     switch (sortBy) {
       case 'price':
         return a.price - b.price;
@@ -59,20 +59,6 @@ export default function PriceComparisonTable({ product }: PriceComparisonTablePr
     }).format(price);
   };
 
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex items-center gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star
-            key={star}
-            size={14}
-            className={star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}
-          />
-        ))}
-        <span className="text-sm text-gray-600 ml-1">{rating.toFixed(1)}</span>
-      </div>
-    );
-  };
 
   return (
     <Card>
@@ -81,7 +67,7 @@ export default function PriceComparisonTable({ product }: PriceComparisonTablePr
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: 'var(--font-sukhumvit)' }}>
-                เปรียบเทียบราคาจาก {product.stores.length} ร้านค้า
+                เปรียบเทียบราคาจาก {stores.length} ร้านค้า
               </h3>
               <p className="text-blue-100" style={{ fontFamily: 'var(--font-sukhumvit)' }}>เปรียบเทียบราคา หน้าร้าน เวลาส่ง และคะแนนรีวิว</p>
             </div>
@@ -128,7 +114,7 @@ export default function PriceComparisonTable({ product }: PriceComparisonTablePr
               <TableColumn className="bg-gray-50 font-semibold text-gray-700">การดำเนินการ</TableColumn>
             </TableHeader>
             <TableBody>
-              {sortedStores.map((store, index) => (
+              {sortedStores.map((store) => (
                 <TableRow key={`${store.storeId}-${store.platform}`} className="hover:bg-gray-50">
                   {/* Store Info */}
                   <TableCell className="py-6">
@@ -142,7 +128,7 @@ export default function PriceComparisonTable({ product }: PriceComparisonTablePr
                         <p className="font-bold text-lg text-gray-900" style={{ fontFamily: 'var(--font-sukhumvit)' }}>{store.storeName}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <Chip
-                            color={getPlatformColor(store.platform) as any}
+                            color={getPlatformColor(store.platform)}
                             size="sm"
                             variant="flat"
                           >
@@ -205,7 +191,7 @@ export default function PriceComparisonTable({ product }: PriceComparisonTablePr
                         <div className="flex items-center gap-1 mt-1">
                           <Truck size={14} className="text-gray-400" />
                           <span className="text-xs text-gray-500" style={{ fontFamily: 'var(--font-sukhumvit)' }}>
-                            {store.shippingCost === 0 ? "ฟรี" : `+${formatPrice(store.shippingCost)}`}
+                            {store.shippingCost === 0 ? "ฟรี" : `+${formatPrice(store.shippingCost || 0)}`}
                           </span>
                         </div>
                       </div>

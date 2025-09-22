@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Card, CardBody, Button, Chip, Avatar, Progress, Tabs, Tab, Spinner } from '@heroui/react';
-import { Star, MapPin, Clock, Shield, ExternalLink, Facebook, Instagram, MessageCircle, TrendingUp, Package, Users } from 'lucide-react';
+import { Star, MapPin, Shield, ExternalLink, Facebook, Instagram, MessageCircle, TrendingUp, Package, Users } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ProductCard from '@/components/product/ProductCard';

@@ -24,13 +24,13 @@ export default function ARVRFeatures({ productName, arModelUrl, vrModelUrl }: AR
       }
 
       // ตรวจสอบการรองรับ WebXR
-      if (!navigator.xr) {
+      if (!(navigator as Navigator & { xr?: unknown }).xr) {
         showARVRNotAvailable();
         return;
       }
 
       // ขออนุญาตใช้กล้อง
-      const stream = await navigator.mediaDevices.getUserMedia({ 
+      await navigator.mediaDevices.getUserMedia({ 
         video: { facingMode: 'environment' } 
       });
       
@@ -58,7 +58,7 @@ export default function ARVRFeatures({ productName, arModelUrl, vrModelUrl }: AR
       }
 
       // ตรวจสอบการรองรับ WebXR
-      if (!navigator.xr) {
+      if (!(navigator as Navigator & { xr?: unknown }).xr) {
         showARVRNotAvailable();
         return;
       }

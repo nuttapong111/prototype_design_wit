@@ -11,7 +11,6 @@ export const showAddToCartSuccess = (productName: string) => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });
@@ -28,7 +27,6 @@ export const showAddToFavoritesSuccess = (productName: string) => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });
@@ -45,7 +43,6 @@ export const showRemoveFromFavorites = (productName: string) => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });
@@ -62,7 +59,6 @@ export const showShareSuccess = (productName: string) => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });
@@ -79,7 +75,6 @@ export const showNoResults = () => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });
@@ -96,7 +91,6 @@ export const showARVRNotAvailable = () => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });
@@ -113,7 +107,6 @@ export const showCameraPermissionDenied = () => {
     customClass: {
       popup: 'font-sukhumvit',
       title: 'font-sukhumvit',
-      content: 'font-sukhumvit',
       confirmButton: 'font-sukhumvit'
     }
   });

@@ -5,18 +5,17 @@ import { useParams } from 'next/navigation';
 import { Card, CardBody, Spinner, Button, Chip } from '@heroui/react';
 import { ArrowLeft, Grid3X3, List } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import ProductCard from '@/components/product/ProductCard';
 import SearchFilters from '@/components/search/SearchFilters';
 import SortOptions from '@/components/search/SortOptions';
 import { mockCategories, mockProducts } from '@/data/mockData';
-import { Product, SearchFilters as SearchFiltersType } from '@/types';
+import { Product, SearchFilters as SearchFiltersType, Category } from '@/types';
 
 export default function CategoryDetailPage() {
   const params = useParams();
   const categorySlug = params.slug as string;
   
-  const [category, setCategory] = useState<any>(null);
+  const [category, setCategory] = useState<Category | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('relevance');
@@ -253,7 +252,7 @@ export default function CategoryDetailPage() {
               <CardBody className="p-4">
                 <h3 className="font-semibold text-gray-900 mb-3">หมวดหมู่ย่อย</h3>
                 <div className="flex flex-wrap gap-2">
-                  {category.subcategories.map((subcategory: any) => (
+                  {category.subcategories.map((subcategory) => (
                     <Chip
                       key={subcategory.id}
                       variant="flat"

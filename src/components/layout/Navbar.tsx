@@ -19,7 +19,7 @@ import {
   DropdownItem,
   Avatar
 } from '@heroui/react';
-import { Search, ShoppingCart, User, Menu, Home, Grid3X3, Store, Info } from 'lucide-react';
+import { Search, ShoppingCart, Home, Grid3X3, Store, Info } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

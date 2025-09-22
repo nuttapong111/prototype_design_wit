@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button, Card, CardBody } from '@heroui/react';
+import { Button } from '@heroui/react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { Banner } from '@/types';
 

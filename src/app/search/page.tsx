@@ -1,24 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Input, Button, Card, CardBody, CardHeader } from '@heroui/react';
+import { Input, Button, Card, CardBody } from '@heroui/react';
 import { Search, Filter } from 'lucide-react';
 import ProductCard from '@/components/product/ProductCard';
 import SearchFilters from '@/components/search/SearchFilters';
 import SortOptions from '@/components/search/SortOptions';
 import { mockProducts } from '@/data/mockData';
-import { Product } from '@/types';
+import { Product, SearchFilters as SearchFiltersType } from '@/types';
 import { showNoResults } from '@/utils/sweetAlert';
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [sortBy, setSortBy] = useState('relevance');
-  const [filters, setFilters] = useState({
-    platforms: [] as string[],
-    categories: [] as string[],
-    priceRange: [0, 100000],
-    minRating: 0,
+  const [filters, setFilters] = useState<SearchFiltersType>({
+    platforms: [],
+    categories: [],
+    priceRange: { min: 0, max: 100000 },
+    rating: 0,
     hasPhysicalStore: false,
     inStock: false
   });
@@ -53,12 +53,12 @@ export default function SearchPage() {
     // กรองตามช่วงราคา
     products = products.filter(product => {
       const minPrice = Math.min(...product.stores.map(store => store.price));
-      return minPrice >= filters.priceRange[0] && minPrice <= filters.priceRange[1];
+      return minPrice >= filters.priceRange.min && minPrice <= filters.priceRange.max;
     });
 
     // กรองตามคะแนนรีวิว
-    if (filters.minRating > 0) {
-      products = products.filter(product => product.averageRating >= filters.minRating);
+    if (filters.rating > 0) {
+      products = products.filter(product => product.averageRating >= filters.rating);
     }
 
     // กรองตามหน้าร้านจริง
@@ -123,8 +123,19 @@ export default function SearchPage() {
     // การค้นหาจะทำงานผ่าน useEffect
   };
 
-  const handleFiltersChange = (newFilters: any) => {
+  const handleFiltersChange = (newFilters: SearchFiltersType) => {
     setFilters(newFilters);
+  };
+
+  const handleClearFilters = () => {
+    setFilters({
+      platforms: [],
+      categories: [],
+      priceRange: { min: 0, max: 100000 },
+      rating: 0,
+      hasPhysicalStore: false,
+      inStock: false
+    });
   };
 
   const handleSortChange = (newSort: string) => {
@@ -180,8 +191,9 @@ export default function SearchPage() {
               พบ {filteredProducts.length} รายการ
             </p>
             <SortOptions
+              sortBy={sortBy}
               onSortChange={handleSortChange}
-              currentSort={sortBy}
+              totalResults={filteredProducts.length}
             />
           </div>
         </div>
@@ -190,7 +202,11 @@ export default function SearchPage() {
           {/* Filters Sidebar */}
           {showFilters && (
             <div className="w-80 flex-shrink-0">
-              <SearchFilters onFiltersChange={handleFiltersChange} />
+              <SearchFilters 
+                filters={filters}
+                onFiltersChange={handleFiltersChange}
+                onClearFilters={handleClearFilters}
+              />
             </div>
           )}
 

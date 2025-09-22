@@ -1,0 +1,3 @@
+# Prevent macOS from creating ._ files
+* -apple-extension
+* -apple-double

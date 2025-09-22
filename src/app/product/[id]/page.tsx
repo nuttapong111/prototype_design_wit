@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { Button, Card, CardBody, CardHeader, Chip, Divider } from '@heroui/react';
-import { Star, Heart, Share2, MapPin, Clock, Truck, Users, ExternalLink } from 'lucide-react';
+import { Button, Card, CardBody, CardHeader, Chip } from '@heroui/react';
+import { Star, Heart, Share2 } from 'lucide-react';
 import { mockProducts } from '@/data/mockData';
 import { Product } from '@/types';
 import ProductImageGallery from '@/components/product/ProductImageGallery';
@@ -15,7 +15,6 @@ export default function ProductDetailPage() {
   const params = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [selectedStore, setSelectedStore] = useState<string | null>(null);
 
   useEffect(() => {
     const foundProduct = mockProducts.find(p => p.id === params.id);

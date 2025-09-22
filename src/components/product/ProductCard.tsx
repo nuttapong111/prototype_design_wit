@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardBody, CardFooter, Button, Chip, Avatar } from '@heroui/react';
-import { Star, Eye, Heart, ExternalLink } from 'lucide-react';
+import { Card, CardBody, CardFooter, Button, Chip } from '@heroui/react';
+import { Star, Eye, Heart } from 'lucide-react';
 import { Product } from '@/types';
 import { showAddToFavoritesSuccess, showRemoveFromFavorites } from '@/utils/sweetAlert';
 
